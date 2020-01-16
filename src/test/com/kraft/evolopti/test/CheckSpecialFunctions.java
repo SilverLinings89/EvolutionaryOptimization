@@ -1,6 +1,8 @@
+package com.kraft.evolopti.test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+import com.kraft.evolopti.*;
 
 class CheckSpecialFunctions {
 

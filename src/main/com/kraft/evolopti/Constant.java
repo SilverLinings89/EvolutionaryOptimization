@@ -1,15 +1,16 @@
+package com.kraft.evolopti;
 
 public class Constant extends Expression {
 	double value;
 	int depth;
 	
-	Constant(int in_depth) {
+	public Constant(int in_depth) {
 		NumberOfChildExpressions = 0;
 		value = random.nextDouble() * 20 - 10;
 		this.depth = in_depth;
 	}
 	
-	Constant(double in_value, int in_depth) {
+	public Constant(double in_value, int in_depth) {
 		value = in_value;
 		depth = in_depth;
 	}
@@ -23,11 +24,10 @@ public class Constant extends Expression {
 	public boolean mutate() {
 		boolean mutate_value = random.nextFloat() < Expression.mutation_threshold ;
 		if(mutate_value) {
-			double new_value = this.value;
-			while(Math.abs(new_value - this.value) < 0.0001 ) {
-				new_value = this.value + random.nextGaussian();
+			double old = this.value;
+			while((old - this.value) == 0) {
+				this.value = (random.nextDouble()- 0.5)*5.0;
 			}
-			this.value = new_value;
 		}
 		return mutate_value;
 	}
@@ -43,7 +43,7 @@ public class Constant extends Expression {
 	}
 
 	@Override
-	boolean isConstant() {
+	public boolean isConstant() {
 		return true;
 	}
 }

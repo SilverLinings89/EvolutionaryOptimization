@@ -1,10 +1,11 @@
+package com.kraft.evolopti;
 import java.util.Random;
 
-abstract class Expression {
-	abstract double evaluateForX(double x);
-	abstract boolean isConstant();
-	abstract Expression cloneExpression();
-	abstract boolean mutate();
+public abstract class Expression {
+	public abstract double evaluateForX(double x);
+	public abstract boolean isConstant();
+	public abstract Expression cloneExpression();
+	public abstract boolean mutate();
 	static Random random = new Random();
 	public Expression optimizedSelf() {
 		boolean constant = true;
@@ -28,7 +29,7 @@ abstract class Expression {
 	}
 	
 	public Expression[] expressions;
-	int NumberOfChildExpressions;
+	public int NumberOfChildExpressions;
 	int depth;
 	static float mutation_threshold = 0.05f;
 	static int depth_max = 10;

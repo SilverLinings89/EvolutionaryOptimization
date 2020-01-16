@@ -1,17 +1,17 @@
-import java.util.Random;
+package com.kraft.evolopti;
 
-public class Sum extends Expression {
+public class Multiplication extends Expression {
 	private int depth;
 	
-	Sum(int in_depth) {
+	public Multiplication(int in_depth) {
+		depth = in_depth;
 		NumberOfChildExpressions = 2;
 		expressions = new Expression[2];
-		depth = in_depth;
 		expressions[0] = ExpressionGenerator.Generate(depth - 1);
 		expressions[1] = ExpressionGenerator.Generate(depth - 1);
-	};
+	}
 	
-	Sum(Expression in_left_hand_side, Expression in_right_hand_side, int in_depth) {
+	public Multiplication(Expression in_left_hand_side, Expression in_right_hand_side, int in_depth) {
 		NumberOfChildExpressions = 2;
 		expressions = new Expression[2];
 		expressions[0] = in_left_hand_side;
@@ -21,7 +21,7 @@ public class Sum extends Expression {
 	
 	@Override
 	public double evaluateForX(double x) {
-		return expressions[0].evaluateForX(x) + expressions[1].evaluateForX(x);
+		return expressions[0].evaluateForX(x) * expressions[1].evaluateForX(x);
 	}
 
 	@Override
@@ -45,22 +45,21 @@ public class Sum extends Expression {
 		} else {
 			if(expressions[1].mutate()) mutated_inner = true;
 		}
-		return mutate_left || mutate_right || mutated_inner;
+		return mutate_left || mutate_right || mutated_inner; 
 	}
 
 	@Override
 	public Expression cloneExpression() {
-		return new Sum(expressions[0].cloneExpression(), expressions[1].cloneExpression(), depth);
+		return new Multiplication(expressions[0].cloneExpression(), expressions[1].cloneExpression(), depth);
 	}
 	
 	@Override
 	public String toString() {
-		return "("+expressions[0].toString() + " + " + expressions[1].toString()+")"; 
-	}
-	
-	@Override
-	boolean isConstant() {
-		return expressions[0].isConstant() && expressions[1].isConstant(); 
+		return "("+expressions[0].toString() + " * " + expressions[1].toString()+")"; 
 	}
 
+	@Override
+	public boolean isConstant() {
+		return expressions[0].isConstant() && expressions[1].isConstant(); 
+	}
 }

@@ -1,7 +1,7 @@
-import java.util.Random;
+package com.kraft.evolopti;
 
 public class ExpressionGenerator {
-	static Expression Generate (int in_depth) {
+	public static Expression Generate (int in_depth) {
 		if(in_depth <= 0) {
 			return new Constant(in_depth);
 		}
@@ -28,7 +28,7 @@ public class ExpressionGenerator {
 		}
 	}
 	
-	static Expression GenerateInitial(int in_depth) {
+	public static Expression GenerateInitial(int in_depth) {
 		if(in_depth <= 0) {
 			return new Constant(in_depth);
 		}

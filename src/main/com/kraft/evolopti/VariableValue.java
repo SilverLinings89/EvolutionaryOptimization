@@ -1,8 +1,9 @@
+package com.kraft.evolopti;
 
 public class VariableValue extends Expression {
 	int depth;
 	
-	VariableValue(int in_depth) {
+	public VariableValue(int in_depth) {
 		NumberOfChildExpressions = 0;
 		this.depth = in_depth;
 	}
@@ -28,7 +29,7 @@ public class VariableValue extends Expression {
 	}
 
 	@Override
-	boolean isConstant() {
+	public boolean isConstant() {
 		return false;
 	}
 }

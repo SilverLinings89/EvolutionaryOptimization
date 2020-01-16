@@ -1,15 +1,12 @@
+package com.kraft.evolopti;
 import java.util.Random;
-
-enum FunctionType {
-	Sin, Cos, Exp, Sqrt, Sqr
-}
 
 public class SpecialFunctions extends Expression {
 	
 	FunctionType type;
 	int depth;
 	
-	SpecialFunctions(int in_depth) {
+	public SpecialFunctions(int in_depth) {
 		NumberOfChildExpressions = 1;
 		this.depth = in_depth;
 		expressions = new Expression[1];
@@ -17,7 +14,7 @@ public class SpecialFunctions extends Expression {
 		this.set_random_type();
 	}
 	
-	SpecialFunctions(Expression in_innerExpression, FunctionType in_type, int in_depth) {
+	public SpecialFunctions(Expression in_innerExpression, FunctionType in_type, int in_depth) {
 		depth = in_depth;
 		type = in_type;
 		NumberOfChildExpressions = 1;
@@ -108,7 +105,7 @@ public class SpecialFunctions extends Expression {
 	}
 
 	@Override
-	boolean isConstant() {
+	public boolean isConstant() {
 		return expressions[0].isConstant(); 
 	}
 }

@@ -1,3 +1,4 @@
+package com.kraft.evolopti.test;
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -5,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.Random;
 
 import org.junit.jupiter.api.Test;
-
+import com.kraft.evolopti.*;
 class CheckSumExpression {
 
 	@Test
@@ -49,8 +50,6 @@ class CheckSumExpression {
 		while(!has_mutated) {
 			has_mutated = test_sum1.mutate();
 		}
-		System.out.println(original_expression);
-		System.out.println(test_sum1.toString());
 		assertNotEquals(original_expression, test_sum1.toString());
 	}
 
