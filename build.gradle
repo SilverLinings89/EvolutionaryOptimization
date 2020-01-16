@@ -6,7 +6,13 @@
  */
  plugins {
 	id 'groovy'
-	id 'eclipse' // optional (to generate Eclipse project files)
+	id 'eclipse'
+	id 'jacoco'
+}
+
+jacoco {
+    toolVersion = "0.8.5"
+    reportsDir = file("$buildDir/reports/jacoco")
 }
 
 sourceSets {
@@ -37,3 +43,12 @@ test {
 		events "passed", "skipped", "failed"
 	}
 }
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination file("${buildDir}/jacocoHtml")
+    }
+}
+
