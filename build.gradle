@@ -6,6 +6,14 @@
  */
  
 apply plugin: 'java'
+
+sourceSets {
+	test {
+		resources {
+			srcDir "EvolutionaryOptimizationExample/src"
+		}
+ 	}
+}
  
 repositories {
     mavenCentral()
@@ -17,5 +25,19 @@ dependencies {
 }
 
 test {
+	include 'EvolutionaryOptimizationExample/src/**'
 	useJUnitPlatform()
+	failFast = true
+	testLogging {
+	    events 'PASSED', 'FAILED', 'SKIPPED'
+	}
+	afterSuite { desc, result ->
+	    if (!desc.parent) {
+	        println "\nTest result: ${result.resultType}"
+	        println "Test summary: ${result.testCount} tests completed, " +
+	                "${result.successfulTestCount} succeeded, " +
+	                "${result.failedTestCount} failed, " +
+	                "${result.skippedTestCount} skipped"
+	    }
+	}
 }
