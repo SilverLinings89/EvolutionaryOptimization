@@ -1,4 +1,3 @@
-import java.util.Random;
 
 public class Constant extends Expression {
 	double value;
@@ -6,7 +5,6 @@ public class Constant extends Expression {
 	
 	Constant(int in_depth) {
 		NumberOfChildExpressions = 0;
-		Random random = new Random();
 		value = random.nextDouble() * 20 - 10;
 		this.depth = in_depth;
 	}
@@ -23,10 +21,13 @@ public class Constant extends Expression {
 
 	@Override
 	public boolean mutate() {
-		Random random = new Random();
 		boolean mutate_value = random.nextFloat() < Expression.mutation_threshold ;
 		if(mutate_value) {
-			this.value = this.value + random.nextGaussian();
+			double new_value = this.value;
+			while(Math.abs(new_value - this.value) < 0.0001 ) {
+				new_value = this.value + random.nextGaussian();
+			}
+			this.value = new_value;
 		}
 		return mutate_value;
 	}

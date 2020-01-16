@@ -1,9 +1,10 @@
 import java.util.Random;
 
+enum FunctionType {
+	Sin, Cos, Exp, Sqrt, Sqr
+}
+
 public class SpecialFunctions extends Expression {
-	enum FunctionType {
-		Sin, Cos, Exp, Sqrt, Sqr
-	}
 	
 	FunctionType type;
 	int depth;
@@ -45,7 +46,6 @@ public class SpecialFunctions extends Expression {
 	}
 	
 	void set_random_type() {
-		Random random = new Random();
 		int new_type = random.nextInt(5);
 		switch (new_type) {
 		case 0: {
@@ -75,7 +75,6 @@ public class SpecialFunctions extends Expression {
 
 	@Override
 	public boolean mutate() {
-		Random random = new Random();
 		boolean mutate_type = random.nextFloat() < Expression.mutation_threshold ;
 		if(mutate_type) {
 			set_random_type();

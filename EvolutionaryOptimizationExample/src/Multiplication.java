@@ -1,4 +1,3 @@
-import java.util.Random;
 
 public class Multiplication extends Expression {
 	private int depth;
@@ -26,17 +25,22 @@ public class Multiplication extends Expression {
 
 	@Override
 	public boolean mutate() {
-		Random random = new Random();
 		boolean mutate_left = random.nextFloat() < Expression.mutation_threshold ;
 		boolean mutate_right = random.nextFloat() < Expression.mutation_threshold ;
 		boolean mutated_inner = false;
 		if(mutate_left) {
-			expressions[0] = ExpressionGenerator.Generate(depth - 1); 
+			String old_expression = expressions[0].toString();
+			while(old_expression.equals(expressions[0].toString())) {
+				expressions[0] = ExpressionGenerator.Generate(depth - 1);
+			}			 
 		} else {
 			if(expressions[0].mutate()) mutated_inner = true;
 		}
 		if(mutate_right) {
-			expressions[1] = ExpressionGenerator.Generate(depth - 1);
+			String old_expression = expressions[1].toString();
+			while(old_expression.equals(expressions[1].toString())) {
+				expressions[1] = ExpressionGenerator.Generate(depth - 1);
+			}
 		} else {
 			if(expressions[1].mutate()) mutated_inner = true;
 		}

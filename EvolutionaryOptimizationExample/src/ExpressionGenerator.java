@@ -5,8 +5,7 @@ public class ExpressionGenerator {
 		if(in_depth <= 0) {
 			return new Constant(in_depth);
 		}
-		Random random = new Random();
-		int typeOfExpression = random.nextInt(Expression.number_of_expression_types);
+		int typeOfExpression = Expression.random.nextInt(Expression.number_of_expression_types);
 		switch (typeOfExpression) {
 			case 0: {
 				return new Constant(in_depth);
@@ -33,8 +32,7 @@ public class ExpressionGenerator {
 		if(in_depth <= 0) {
 			return new Constant(in_depth);
 		}
-		Random random = new Random();
-		int typeOfExpression = random.nextInt(Expression.number_of_expression_types-2);
+		int typeOfExpression = Expression.random.nextInt(Expression.number_of_expression_types-2);
 		switch (typeOfExpression) {
 			case 0: {
 				return new Multiplication(in_depth);

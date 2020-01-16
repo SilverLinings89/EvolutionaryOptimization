@@ -1,10 +1,11 @@
+import java.util.Random;
 
 abstract class Expression {
 	abstract double evaluateForX(double x);
 	abstract boolean isConstant();
 	abstract Expression cloneExpression();
 	abstract boolean mutate();
-		
+	static Random random = new Random();
 	public Expression optimizedSelf() {
 		boolean constant = true;
 		for(int i = 0; i < NumberOfChildExpressions; i++) {
