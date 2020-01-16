@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/SilverLinings89/EvolutionaryOptimization/tree/master.svg?style=svg)](https://circleci.com/gh/SilverLinings89/EvolutionaryOptimization/tree/master)
+
 # EvolutionaryOptimization
 This code serves as an example implenmentaion of the article I wrote on my [blog](http://pascal-kraft.com/index.php/blog/166-evolutionary-optimization)
 
