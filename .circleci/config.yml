@@ -40,4 +40,5 @@ jobs:
 
       # run tests!
       - run: gradle test
-      - run: store_test_results
+      - store_test_results:
+	  path: ~/test-results/
