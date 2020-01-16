@@ -4,13 +4,20 @@
  * This is a general purpose Gradle build.
  * Learn how to create Gradle builds at https://guides.gradle.org/creating-new-gradle-builds/
  */
- 
-apply plugin: 'java'
+ plugins {
+	id 'groovy'
+	id 'eclipse' // optional (to generate Eclipse project files)
+}
 
 sourceSets {
+	main {
+		java {
+			srcDirs = ['src/main']
+		}
+	}
 	test {
-		resources {
-			srcDir "EvolutionaryOptimizationExample/src"
+		java {
+			srcDirs = ['src/test']
 		}
  	}
 }
@@ -20,24 +27,13 @@ repositories {
 }
  
 dependencies {
-    testImplementation('org.junit.jupiter:junit-jupiter-api:5.4.2')
-    testRuntime('org.junit.jupiter:junit-jupiter-engine:5.4.2')
+	implementation(localGroovy())
+	testImplementation('org.junit.jupiter:junit-jupiter:5.5.2')
 }
 
 test {
-	include 'EvolutionaryOptimizationExample/src/**'
 	useJUnitPlatform()
-	failFast = true
 	testLogging {
-	    events 'PASSED', 'FAILED', 'SKIPPED'
-	}
-	afterSuite { desc, result ->
-	    if (!desc.parent) {
-	        println "\nTest result: ${result.resultType}"
-	        println "Test summary: ${result.testCount} tests completed, " +
-	                "${result.successfulTestCount} succeeded, " +
-	                "${result.failedTestCount} failed, " +
-	                "${result.skippedTestCount} skipped"
-	    }
+		events "passed", "skipped", "failed"
 	}
 }

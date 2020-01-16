@@ -1,10 +1,14 @@
-import static org.junit.jupiter.api.Assertions.*;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
 
 class CheckConstantExpression {
 
 	@Test
+	@DisplayName("Testing properties of constant functions.")
 	void test() {
 		Constant expression = new Constant(1.0,1);
 		Expression clone = expression.cloneExpression();
