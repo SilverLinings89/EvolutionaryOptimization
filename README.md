@@ -15,3 +15,7 @@ This is a fairly basic implementation and can serve as a starting point in case 
 
 You should not need any further files. Simply compile and run. The commands `javac OptimizationRunner.java` and `java OptimizationRunner` should run the code (which is located in the folder `src/main/com/kraft/evolopti`. The tests are located in `src/test/com/kraft/evolopti`. The parameters can be set in OptimizationRunner.java.
 This is also a gradle project which you can use if you know gradle. More introduction will follow later.
+
+## Coverage
+
+![Coverage Graph](https://codecov.io/gh/SilverLinings89/EvolutionaryOptimization/branch/master/graphs/commits.svg)
