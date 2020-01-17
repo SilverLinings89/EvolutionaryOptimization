@@ -48,5 +48,5 @@ jobs:
       - store_artifacts:
           path: build/jacoco
       - codecov/upload:
-          file: build/reports/jacoco/test
+          file: build/reports/jacoco/test/jacocoTestReport.xml
 
