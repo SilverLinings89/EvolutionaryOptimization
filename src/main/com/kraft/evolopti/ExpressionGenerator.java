@@ -24,7 +24,7 @@ public class ExpressionGenerator {
 			}
 			
 			default:
-				throw new IllegalArgumentException("Unexpected value: " + typeOfExpression);
+				return new Constant(1);
 		}
 	}
 	
@@ -44,7 +44,7 @@ public class ExpressionGenerator {
 				return new Sum(in_depth);
 			}
 			default:
-				throw new IllegalArgumentException("Unexpected value: " + typeOfExpression);
+				return new Constant(1);
 		}
 	}
 }

@@ -25,5 +25,12 @@ class CheckExpressionGenerator {
 		assertEquals(hasChildren, true);
 	}
 	
+	
+	@Test
+	void GenerateRandomInitialExpressionError() {
+		Expression ex = ExpressionGenerator.GenerateInitial(-5);
+		assertNotEquals(ex.toString(), "");
+		assertEquals(ex.NumberOfChildExpressions, 0);
+	}
 
 }

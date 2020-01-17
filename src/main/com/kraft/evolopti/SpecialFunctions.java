@@ -1,6 +1,8 @@
 package com.kraft.evolopti;
 import java.util.Random;
 
+import javax.annotation.Generated;
+
 public class SpecialFunctions extends Expression {
 	
 	FunctionType type;
@@ -73,10 +75,22 @@ public class SpecialFunctions extends Expression {
 	@Override
 	public boolean mutate() {
 		boolean mutate_type = random.nextFloat() < Expression.mutation_threshold ;
+		boolean mutate_inner_expression = random.nextFloat() < Expression.mutation_threshold ;
+		boolean mutated_inner = mutate_inner_expression;
 		if(mutate_type) {
-			set_random_type();
+			FunctionType old = this.type;
+			while(this.type == old) {
+				set_random_type();
+			}			
 		}
-		boolean mutated_inner = expressions[0].mutate();
+		if(mutate_inner_expression) {
+			String inner = expressions[0].toString();
+			while (inner.equals(expressions[0].toString()) ) {
+				expressions[0] = ExpressionGenerator.Generate(this.depth-1);
+			}
+		} else {
+			mutated_inner = expressions[0].mutate();
+		}
 		return mutate_type || mutated_inner;
 	}
 	
@@ -100,7 +114,7 @@ public class SpecialFunctions extends Expression {
 			case Sqr:
 				return "("+inner+")^2";
 			default:
-				throw new IllegalArgumentException("Unexpected type in SpecialFunctions.evaluateForX");
+				return "";
 		}
 	}
 
