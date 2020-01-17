@@ -1,9 +1,8 @@
 package com.kraft.evolopti;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import javafx.util.Pair;
 
 public class OptimizationCase {
 	
@@ -17,7 +16,7 @@ public class OptimizationCase {
 	int newExpressionsPerGeneration;
 	double residual;
 	List<Expression> expressions;
-	List<Pair<Double, Double>> evaluationPoints;
+	List<Point2D.Double> evaluationPoints;
 	double last_error = 0;
 	
 	OptimizationCase(   int inExpressionsAtStart,
@@ -27,7 +26,7 @@ public class OptimizationCase {
 						int inChildrenPerSurvivor,
 						int inMaxSteps,
 						int inMaxDepth,
-						List<Pair<Double, Double>> inEvaluationPoints,
+						List<Point2D.Double> inEvaluationPoints,
 						double inResidual) throws Exception {
 		expressionsAtStart = inExpressionsAtStart;
 		maxSteps = inMaxSteps;
@@ -58,14 +57,14 @@ public class OptimizationCase {
 	
 	boolean check_and_sort_evaluation_points() {
 		Collections.sort(evaluationPoints, (d1, d2) -> {
-			return - Double.compare(d1.getKey(),d2.getKey());
+			return - Double.compare(d1.getX(),d2.getY());
 		});
 		boolean is_function_of_x = true;
 		for(int i = 1; i < evaluationPoints.size(); i++) {
-			Pair<Double, Double> p1 = evaluationPoints.get(i-1);
-			Pair<Double, Double> p2 = evaluationPoints.get(i);
-			if( Math.abs(p1.getKey() - p2.getKey()) < 0.0001 ) {
-				if(p1.getValue() != p2.getValue()) {
+			Point2D p1 = evaluationPoints.get(i-1);
+			Point2D p2 = evaluationPoints.get(i);
+			if( Math.abs(p1.getX() - p2.getX()) < 0.0001 ) {
+				if(p1.getY() != p2.getY()) {
 					is_function_of_x = false;
 				}
 			}
@@ -157,7 +156,7 @@ public class OptimizationCase {
 	double compute_error_for_expression(Expression expression) {
 		double error = 0;
 		for(int i = 0; i < numberOfEvaluationPoints; i++) {
-			error += Math.abs(expression.evaluateForX(evaluationPoints.get(i).getKey()) - evaluationPoints.get(i).getValue());
+			error += Math.abs(expression.evaluateForX(evaluationPoints.get(i).getX()) - evaluationPoints.get(i).getY());
 		}
 		return error;
 	}

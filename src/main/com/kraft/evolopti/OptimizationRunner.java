@@ -1,14 +1,11 @@
 package com.kraft.evolopti;
 
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Random;
-
-import javafx.util.Pair;
 
 public class OptimizationRunner {
-	List<Pair<Double, Double>> EvaluationPoints;
+	List<Point2D.Double> EvaluationPoints;
 	OptimizationCase optimizationCase;
 	
 	public static void main(String[] args) throws Exception {
@@ -18,15 +15,15 @@ public class OptimizationRunner {
 		runner.run();		
 	}
 	
-	public void setEvaluationPoints(List<Pair<Double, Double>> inEvaluationPoints) {
+	public void setEvaluationPoints(List<Point2D.Double> inEvaluationPoints) {
 		this.EvaluationPoints = inEvaluationPoints;
 	}
 	
-	List<Pair<Double, Double>> generateEvaluationPoints() {
-		EvaluationPoints = new ArrayList<Pair<Double, Double>>();
-		EvaluationPoints.add(new Pair<Double, Double>(0.0,0.5));
-		EvaluationPoints.add(new Pair<Double, Double>(1.0,1.5));
-		EvaluationPoints.add(new Pair<Double, Double>(2.0,4.5));
+	List<Point2D.Double> generateEvaluationPoints() {
+		EvaluationPoints = new ArrayList<Point2D.Double>();
+		EvaluationPoints.add(new Point2D.Double(0.0,0.5));
+		EvaluationPoints.add(new Point2D.Double(1.0,1.5));
+		EvaluationPoints.add(new Point2D.Double(2.0,4.5));
 		return EvaluationPoints;
 	}
 	
