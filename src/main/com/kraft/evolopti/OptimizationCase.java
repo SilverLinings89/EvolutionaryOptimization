@@ -19,7 +19,7 @@ public class OptimizationCase {
 	List<Point2D.Double> evaluationPoints;
 	double last_error = 0;
 	
-	OptimizationCase(   int inExpressionsAtStart,
+	public OptimizationCase(   int inExpressionsAtStart,
 						int inSurvivorsPerGeneration,
 						int inUnmutatedSurvivors,
 						int inNewExpressionsPerGeneration,
@@ -72,11 +72,11 @@ public class OptimizationCase {
 		return is_function_of_x;
 	}
 	
-	void run() {
+	public void run() {
 		for(int step = 0; step < maxSteps; step++) {
 			mutate_expressions();
 			simplify_expressions();
-			if(found_suficcient_solution()) break;
+			if(step> 0 && found_suficcient_solution()) break;
 			sort_expression_list();
 			remove_bad_expressions();
 			fill_expressions_list();
@@ -159,5 +159,17 @@ public class OptimizationCase {
 			error += Math.abs(expression.evaluateForX(evaluationPoints.get(i).getX()) - evaluationPoints.get(i).getY());
 		}
 		return error;
+	}
+	
+	public Expression getBestSolution() {
+		sort_expression_list();
+		if(expressions.size() > 0) return expressions.get(0);
+		else return new Constant(0,1);
+	}
+	
+	public double getBestResiudal() {
+		sort_expression_list();
+		if(expressions.size() > 0) return compute_error_for_expression(expressions.get(0));
+		else return 10000;
 	}
 }
