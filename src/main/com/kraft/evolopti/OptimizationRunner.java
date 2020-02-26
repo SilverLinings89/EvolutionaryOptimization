@@ -10,7 +10,6 @@ public class OptimizationRunner {
 	
 	public static void main(String[] args) throws Exception {
 		OptimizationRunner runner = new OptimizationRunner();
-		// TODO add load from file functionality here.
 		runner.generateEvaluationPoints();
 		runner.run();		
 	}
@@ -19,6 +18,9 @@ public class OptimizationRunner {
 		this.EvaluationPoints = inEvaluationPoints;
 	}
 	
+	// This function generates the evaluation points and pushes them into an array. 
+	// Every point consists of an x and a y value.
+	// The more Points are added the longer the optimization will take.
 	List<Point2D.Double> generateEvaluationPoints() {
 		EvaluationPoints = new ArrayList<Point2D.Double>();
 		EvaluationPoints.add(new Point2D.Double(0.0,0.5));
@@ -28,7 +30,15 @@ public class OptimizationRunner {
 	}
 	
 	public void run() throws Exception {
-		optimizationCase = new OptimizationCase(1000, 200, 30, 300, 5, 10000, 10, EvaluationPoints, 0.0001);
+		int CandidatesAtStart = 1000;
+		int SurvivorsPerGeneration = 200;
+		int ProtectedMembersPerGeneration = 30;
+		int NewRandomCandidatesPerGeneration = 300;
+		int ChildrenPerSurvivor = 5;
+		int MaxOptimizationSteps = 1000;
+		int MaxExpressionDepth = 10;
+		double Residual = 0.0001; // This value describes at how small of an error the scheme should stop. The smaller this value is, the longer the computation might take.
+		optimizationCase = new OptimizationCase(CandidatesAtStart, SurvivorsPerGeneration, ProtectedMembersPerGeneration, NewRandomCandidatesPerGeneration, ChildrenPerSurvivor, MaxOptimizationSteps, MaxExpressionDepth, EvaluationPoints, Residual);
 		optimizationCase.run();
 	}
 	

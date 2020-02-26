@@ -13,8 +13,12 @@ This is a fairly basic implementation and can serve as a starting point in case 
 
 ## Usage
 
-You should not need any further files. Simply compile and run. The commands `javac OptimizationRunner.java` and `java OptimizationRunner` should run the code (which is located in the folder `src/main/com/kraft/evolopti`. The tests are located in `src/test/com/kraft/evolopti`. The parameters can be set in OptimizationRunner.java.
-This is also a gradle project which you can use if you know gradle. More introduction will follow later.
+The main folder contains a script `gradlew` for Linux and `gradlew.bat` for Windows. This builds the code. Executing `gradlew test` runs the code.
+After building the project, you can run the code by calling `java -classpath ./bin com.kraft.evolopti.OptimizationRunner` in the main directory. You can change the parameters in the OptimizationRunner class.
+
+For convenience I recommend using Eclipse and importing the gradle project. This will enable you to run the code directly without manually building it each time. It also offers syntax highlighting, code completion and integrates well with gradle.
+
+If eclipse shows an error in the tests about org.junit not being found, right click the project main folder, go to Build Path > Configure Build Path > Choose "Library" on the right > Add Library > Junit > Next and it should work.
 
 ## Coverage
 
